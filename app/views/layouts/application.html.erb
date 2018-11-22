@@ -11,9 +11,8 @@
   </head>
 
   <body>
-    <div class="container">
+    <%= render 'shared/navbar' %>
       <%= yield %>
-    </div>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
