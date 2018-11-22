@@ -1,6 +1,11 @@
+
+<div class="container">
+
 <h1>New cocktail</h1>
 
 <%= simple_form_for(@cocktail) do |f| %>
   <%= f.input :name %>
+  <%= f.input :image_url %>
   <%= f.button :submit %>
 <% end %>
+</div>

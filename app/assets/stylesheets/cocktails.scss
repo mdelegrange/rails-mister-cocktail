@@ -1,3 +1,15 @@
 // Place all the styles related to the Cocktails controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.img-size {
+  height: 200px;
+}
+
+.flex {
+  display:flex;
+  justify-content: space-between;
+}
+
+.cocktail-detail {
+  width : 40%;
+}

@@ -1,17 +1,32 @@
-<h1><%= @cocktail.name %></h1>
+<div class="container">
+  <div class="row flex">
+    <div class="cocktail-detail">
+      <h2><%= @cocktail.name %></h2>
+      <%= image_tag @cocktail.image_url, alt: "#{@cocktail.name} picture", class: 'img-size' %>
+      <h3>Ingredients</h3>
+      <ul class="list-group">
+        <% @cocktail.doses.each do |dose| %>
+        <li class="list-group-item flex">
+          <%= dose.ingredient.name %>: <%= dose.description  %>
+          <%= link_to '💣',  dose_path(@cocktail, dose), method: :delete, data: { confirm: 'Are you sure' }%>
+        </li>
+        <% end %>
+      </ul>
 
-
-<h2>Ingredients</h2>
-
-<ul>
-  <% @cocktail.doses.each do |dose| %>
-  <li>
-    <%= dose.ingredient.name %>: <%= dose.description  %>
-    <%= link_to 'delete',  cocktail_dose_path(@cocktail, dose), method: :delete%>
-  </li>
-  <% end %>
-</ul>
-
-
-<%= link_to "Add a new ingredient", new_cocktail_dose_path(@cocktail) %>
-<%= link_to "Back to all cocktails", cocktails_path %>
+      </div>
+      <div>
+        <h2>Add an ingredient</h2>
+        <%= simple_form_for([@cocktail, @dose]) do |f| %>
+        <%#= select_tag 'ingredient', options_from_collection_for_select(
+              @ingredients,
+              :id, :name),
+              class: 'select2 form-control', %>
+          <%= f.association :ingredient%>
+          <%= f.input :description, label: "Quantity" %>
+          <%= f.button :submit, "Add ingredient", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  <hr>
+  <%= link_to "Back to all cocktails", cocktails_path %>
+</div>
