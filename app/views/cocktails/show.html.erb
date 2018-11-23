@@ -21,7 +21,7 @@
               @ingredients,
               :id, :name),
               class: 'select2 form-control', %>
-          <%= f.association :ingredient%>
+          <%= f.association :ingredient, collection: Ingredient.order('name')%>
           <%= f.input :description, label: "Quantity" %>
           <%= f.button :submit, "Add ingredient", class: 'btn btn-primary' %>
         <% end %>
