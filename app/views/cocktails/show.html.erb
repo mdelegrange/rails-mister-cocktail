@@ -28,6 +28,26 @@
         <% end %>
       </div>
     </div>
+      <div>
+        <h2>All reviews</h2>
+        <% @cocktail.reviews.each do |review| %>
+        <ul class="list-group">
+          <li class="list-group-item flexbox-between">
+            <div><%= review.content %></div>
+            <div><%= '🍹' * review.rating %></div>
+          </li>
+        <% end %>
+        </ul>
+        <h2>Add a review</h2>
+        <%= simple_form_for([@cocktail, @review]) do |f| %>
+          <%= f.input :content %>
+          <%= f.collection_radio_buttons :rating, [[0, 0] ,[1, 1] ,[2, 2] ,[3, 3], [4, 4], [5, 5]], :first, :last%>
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+
+
+
   <hr>
   <%= link_to "Back to all cocktails", cocktails_path %>
 </div>
